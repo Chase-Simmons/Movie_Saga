@@ -22,13 +22,13 @@ const sagaMiddleware = createSagaMiddleware();
 
 // Create one store that all components can use
 const storeInstance = createStore(
-  rootReducer,
+  rootReducer, // <-- USE OF MODULARIZED REDUCERS
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
 );
 
 // Pass rootSaga into our sagaMiddleware
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga); // <-- USE OF MODULARIZED SAGAS
 
 ReactDOM.render(
   <Provider store={storeInstance}>
