@@ -1,12 +1,24 @@
 import { all } from 'redux-saga/effects';
 
 // -> SAGAS <- \\
-import getMovies from './MovieSagas/getMovies.saga';
+/*------------------> MOVIES <------------------*/
+/*    */ import getMovies from './MovieSagas/getMovies.saga';
+/*    */ import postMovies from './MovieSagas/postMovies.saga';
+/*    */ import deleteMovies from './MovieSagas/deleteMovies.saga';
+/*------------------> MOVIES <------------------*/
+/*------------------> GENRES <------------------*/
+/*    */ import getGenres from './GenreSagas/getGenres.saga';
+/*------------------> GENRES <------------------*/
 // -> SAGAS <- \\
 
-// Create the rootSaga generator function
 function* rootSaga() {
-  yield all([getMovies()]);
+  yield all([
+    /* break-prettier */
+    getMovies(),
+    postMovies(),
+    deleteMovies(),
+    getGenres(),
+  ]);
 }
 
 export default rootSaga;
