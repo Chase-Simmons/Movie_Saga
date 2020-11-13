@@ -21,18 +21,18 @@ class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h1>Movies!</h1>
-        </div>
-        <main>
-          <Router>
+      <Router>
+        <div className="App">
+          <div className="App-header">
+            <h1>Movies!</h1>
+          </div>
+          <main>
             <Route exact path="/" component={HomePage} />
-            {/* <Route exact path="/details" component={DetailsPage} />
-          <Route exact path="/add-movies" component={AddMoviesPage} /> */}
-          </Router>
-        </main>
-      </div>
+            <Route exact path="/details/:id" component={DetailsPage} />
+            {/* <Route exact path="/add-movies" component={AddMoviesPage} /> */}
+          </main>
+        </div>
+      </Router>
     );
   }
 }

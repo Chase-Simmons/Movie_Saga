@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
+/*------> GET ALL INFO FROM DATABASE <------*/
 router.get('/', (req, res) => {
-  // Add query to get all genres
   const queryText = 'SELECT * FROM "movies" ORDER BY "id";';
   pool
     .query(queryText)
@@ -16,6 +16,24 @@ router.get('/', (req, res) => {
     });
 });
 
+/*------> GET INFO BY UNIQUE ID FROM DATABASE <------*/
+router.get('/details/:id', (req, res) => {
+  const queryText = `SELECT "movies"."id", "movies"."title", "movies"."poster", "movies"."description", array_agg(genres.name) as "genres" FROM "movies"
+  LEFT JOIN "movies_and_genres" ON "movies"."id" = "movies_and_genres"."movie_id"
+  LEFT JOIN "genres" ON "movies_and_genres"."genre_id" = "genres"."id"
+  WHERE "movies"."id"=$1 GROUP BY "movies"."id";`;
+  pool
+    .query(queryText, [req.params.id])
+    .then((result) => {
+      res.send(result.rows[0]);
+    })
+    .catch((err) => {
+      console.log('Error while on [get/:id] of [movie.router.js]', err);
+      res.sendStatus(500);
+    });
+});
+
+/*------> POST INFO TO DATABASE <------*/
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie

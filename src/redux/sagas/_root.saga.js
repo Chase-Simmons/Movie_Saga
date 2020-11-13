@@ -5,6 +5,8 @@ import { all } from 'redux-saga/effects';
 /*    */ import getMovies from './MovieSagas/getMovies.saga';
 /*    */ import postMovies from './MovieSagas/postMovies.saga';
 /*    */ import deleteMovies from './MovieSagas/deleteMovies.saga';
+/*    */ import getMoviesDetails from './MovieSagas/getMoviesDetails.saga';
+/*    */ import clearMoviesDetails from './MovieSagas/clearMoviesDetails.saga';
 /*------------------> MOVIES <------------------*/
 /*------------------> GENRES <------------------*/
 /*    */ import getGenres from './GenreSagas/getGenres.saga';
@@ -13,10 +15,11 @@ import { all } from 'redux-saga/effects';
 
 function* rootSaga() {
   yield all([
-    /* break-prettier */
     getMovies(),
     postMovies(),
     deleteMovies(),
+    getMoviesDetails(),
+    clearMoviesDetails(),
     getGenres(),
   ]);
 }

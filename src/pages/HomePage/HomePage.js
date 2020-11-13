@@ -6,8 +6,11 @@ import MovieList from '../../components/MovieList/MovieList';
 // -> IMPORT COMPONENT <- \\
 
 class HomePage extends Component {
+  getDetails = (item) => (event) => {
+    this.props.history.push(`/details/${item.id}`);
+  };
   render() {
-    return <MovieList />;
+    return <MovieList getDetails={this.getDetails} />;
   }
 }
 

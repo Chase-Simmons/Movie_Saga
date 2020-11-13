@@ -4,7 +4,6 @@ import axios from 'axios';
 function* getMovies(action) {
   try {
     const response = yield axios.get('/api/movie');
-    console.log(response.data);
     yield put({
       type: 'SET_MOVIES',
       payload: response.data,

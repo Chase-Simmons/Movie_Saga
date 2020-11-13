@@ -4,6 +4,9 @@
   padding: 5px;
 }
 
+.movie-item-block:hover {
+  background-color: #ccf9ff;
+}
 .movie-item-block:nth-child(odd) {
   border: 2px solid #333333;
 }
@@ -23,7 +26,7 @@
   border: 1px solid #333333;
 }
 
-img {
+.list-image {
   width: 185px;
   height: 275px;
 }
@@ -34,8 +37,4 @@ img {
   padding-left: 3%;
   padding-right: 15px;
   text-align: left;
-}
-
-h3 {
-  text-align: center;
 }
