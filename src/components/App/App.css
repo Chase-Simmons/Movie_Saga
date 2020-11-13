@@ -1,13 +1,19 @@
+html,
+body {
+  margin: 0px;
+}
+
 .App {
   text-align: center;
 }
 
-
 .App-header {
+  position: fixed;
+  width: 100%;
   background-color: #222;
-  height: 150px;
-  padding: 20px;
+  height: 75px;
   color: white;
+  margin: 0;
 }
 
 .App-title {
@@ -19,6 +25,14 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.space-from-header {
+  padding-top: 100px;
 }

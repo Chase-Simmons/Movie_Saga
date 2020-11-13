@@ -1,0 +1,29 @@
+.movie-item-block {
+  display: inline-block;
+  width: 70%;
+}
+
+.movie-item-block:nth-child(odd) {
+  border: 2px solid #333333;
+}
+.movie-item-block:nth-child(even) {
+  border-left: 2px solid #333333;
+  border-right: 2px solid #333333;
+}
+.movie-item-block:last-child {
+  border-bottom: 2px solid #333333;
+}
+
+.img-block {
+  float: left;
+  width: 185px;
+  height: 275px;
+  border-right: 2px solid #333333;
+}
+
+.details-block {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15%;
+}
