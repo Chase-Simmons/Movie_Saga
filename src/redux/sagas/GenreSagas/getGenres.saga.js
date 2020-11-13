@@ -6,7 +6,7 @@ function* getGenres(action) {
     const response = yield axios.get('/api/genre');
     console.log(response.data);
     yield put({
-      type: 'SET_GENRE',
+      type: 'SET_GENRES',
       payload: response.data,
     });
   } catch (err) {
