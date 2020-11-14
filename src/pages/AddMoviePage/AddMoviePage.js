@@ -5,19 +5,57 @@ import { connect } from 'react-redux';
 // -> IMPORT COMPONENT <- \\
 
 class AddMoviePage extends Component {
+  state = {
+    movieForm: {
+      image: '',
+      title: '',
+      description: '',
+      genres: [],
+    },
+    genreToAdd: '',
+  };
+
+  onFormChange = (key) => (event) => {
+    if (key === 'genreToAdd') {
+      this.setState({ ...this.state, [key]: event.target.value });
+    } else {
+      this.setState({
+        ...this.state,
+        movieForm: {
+          ...this.state.movieForm,
+          [key]: event.target.value,
+        },
+      });
+    }
+    console.log(this.state);
+  };
+
   onClickCancel = () => {
     this.props.dispatch({ type: 'CLEAR_MOVIE_DETAILS' });
     this.props.history.push('/');
   };
 
+  onClickAddGenre = () => {
+    if (this.state.genreToAdd === '') {
+      alert('please fill out genre before adding!');
+    } else {
+      this.setState({
+        movieForm: {
+          ...this.state.movieForm,
+          genres: [...this.state.movieForm.genres, this.state.genreToAdd],
+        },
+        genreToAdd: '',
+      });
+    }
+  };
   render() {
     const imageBlockBackground = {
-      backgroundImage: `url(${this.props.store.movieDetails.poster})`,
+      backgroundImage: `url(${this.state.movieForm.image})`,
     };
 
     return (
       <div className="space-from-header">
-        <div className="movie-item-details-block">
+        <div className="add-movie-item-details-block">
           <div className="details-image-block">
             <div
               className="details-image-block-background"
@@ -26,21 +64,45 @@ class AddMoviePage extends Component {
             <div>
               <img
                 className="details-main-image"
-                src={this.props.store.movieDetails.poster}
-                alt={this.props.store.movieDetails.title}
+                src={this.state.movieForm.image}
+                alt={this.state.movieForm.title}
               />
             </div>
           </div>
-          <input placeholder="image path"></input>
+          <br />
+          <input
+            placeholder="Image Path"
+            onChange={this.onFormChange('image')}
+            value={this.state.movieForm.image}
+          />
           <br />
           <div>
-            <h3>{this.props.store.movieDetails.title}</h3>
-            <p>{this.props.store.movieDetails.description}</p>
+            <h3>{this.state.movieForm.title}</h3>
+            <input
+              placeholder="Title Name"
+              onChange={this.onFormChange('title')}
+              value={this.state.movieForm.title}
+            />
+            <p>{this.state.movieForm.description}</p>
           </div>
+          <input
+            placeholder="Movie Description"
+            onChange={this.onFormChange('description')}
+            value={this.state.movieForm.description}
+          />
+          <br />
+          <br />
           <div>
-            {this.props.store.movieDetails.genres.map((item, index) => (
-              <span key={index}>{item} </span>
+            {this.state.movieForm.genres.map((item, index) => (
+              <span key={index}>{`${item}, `}</span>
             ))}
+            <br />
+            <input
+              placeholder="Genre Name"
+              onChange={this.onFormChange('genreToAdd')}
+              value={this.state.genreToAdd}
+            ></input>
+            <button onClick={this.onClickAddGenre}>Add Genre</button>
           </div>
           <br />
           <br />
