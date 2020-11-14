@@ -2,6 +2,7 @@
   display: inline-flex;
   width: 70%;
   padding: 5px;
+  background-color: #ffffff;
 }
 
 .movie-item-block:hover {

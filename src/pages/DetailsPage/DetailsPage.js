@@ -17,31 +17,48 @@ class DetailsPage extends Component {
     this.props.dispatch({ type: 'CLEAR_MOVIE_DETAILS' });
     this.props.history.push('/');
   };
+  onClickEdit = () => {
+    this.props.dispatch({ type: 'CLEAR_MOVIE_DETAILS' });
+    this.props.history.push(`/edit-movie/${this.props.store.movieDetails.id}`);
+  };
   render() {
+    const imageBlockBackground = {
+      backgroundImage: `url(${this.props.store.movieDetails.poster})`,
+    };
+
     console.log(this.props.store.movieDetails.genres);
     return (
       <div className="space-from-header">
         <div className="movie-item-details-block">
-          <div className image-block>
-            <img
-              className="details-main-image"
-              src={this.props.store.movieDetails.poster}
-              alt={this.props.store.movieDetails.title}
+          <div className="details-image-block">
+            <div
+              className="details-image-block-background"
+              style={imageBlockBackground}
             />
+            <div>
+              <img
+                className="details-main-image"
+                src={this.props.store.movieDetails.poster}
+                alt={this.props.store.movieDetails.title}
+              />
+            </div>
           </div>
-
+          <br />
+          <br />
           <div className="button-box">
             <button onClick={this.onClickBack}>Back</button>
-            <button>Edit</button>
+            <button onClick={this.onClickEdit}>Edit</button>
           </div>
-          <div>
-            {this.props.store.movieDetails.genres.map((item, index) => (
-              <span key={index}>{item} </span>
-            ))}
-          </div>
+          <br />
           <div>
             <h3>{this.props.store.movieDetails.title}</h3>
             <p>{this.props.store.movieDetails.description}</p>
+          </div>
+          <div>
+            <h3>Genre</h3>
+            {this.props.store.movieDetails.genres.map((item, index) => (
+              <span key={index}>{item} </span>
+            ))}
           </div>
         </div>
       </div>

@@ -5,16 +5,44 @@
   border: 2px solid #333333;
   margin-left: auto;
   margin-right: auto;
+  background-color: #ffffff;
 }
 
 .details-main-image {
   width: 250px;
   height: 369px;
-}
-
-.details-background-image {
   position: fixed;
   left: 0;
+  right: 0;
+  z-index: 9999;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.details-image-block {
   width: 100%;
   height: 369px;
+  padding-left: 10px;
+  margin-top: -5px;
+  margin-left: -5px;
+  background-color: #333333;
+}
+
+.details-image-block-background {
+  float: left;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 360px;
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+  margin-left: -10px;
+  padding-left: 10px;
+  padding-bottom: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
