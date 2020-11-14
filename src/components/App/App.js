@@ -6,9 +6,12 @@ import './App.css';
 // -> IMPORT PAGES <-- \\
 import HomePage from '../../pages/HomePage/HomePage';
 import DetailsPage from '../../pages/DetailsPage/DetailsPage';
-import AddMoviesPage from '../../pages/AddMoviesPage/AddMoviesPage';
+import AddMoviesPage from '../../pages/AddMoviePage/AddMoviePage';
 // -> IMPORT PAGES <-- \\
 
+// -> IMPORT COMPONENTS <-- \\
+import Header from '../Header/Header';
+// -> IMPORT COMPONENTS <-- \\
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({
@@ -18,18 +21,17 @@ class App extends Component {
       type: 'GET_GENRES',
     });
   }
+
   // Renders the entire app on the DOM
   render() {
     return (
       <Router>
         <div className="App">
-          <div className="App-header">
-            <h1>Movies!</h1>
-          </div>
+          <Route path="/" component={Header} />
           <main>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/details/:id" component={DetailsPage} />
-            <Route exact path="/edit-movie/:id" component={AddMoviesPage} />
+            <Route exact path="/add-movie" component={AddMoviesPage} />
           </main>
         </div>
       </Router>
