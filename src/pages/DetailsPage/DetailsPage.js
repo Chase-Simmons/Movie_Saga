@@ -53,7 +53,7 @@ class DetailsPage extends Component {
             <p>{this.props.store.movieDetails.description}</p>
           </div>
           <div>
-            <h3>Genre</h3>
+            <h3>Genres</h3>
             {this.props.store.movieDetails.genres.map((item, index) => (
               <span key={index}>{`${item}, `}</span>
             ))}

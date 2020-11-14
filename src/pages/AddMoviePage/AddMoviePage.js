@@ -150,6 +150,7 @@ class AddMoviePage extends Component {
             <br />
             {/*--------> MAPS OUT GENRES AS THEY ARE ADDED <--------*/}
             {/*--------> MAPS GENRE REDUCER TO CREATE SELECTOR <--------*/}
+            <br />
             <select onChange={this.JSON_DemonSlayer()}>
               {/*--------> look man... i just had to make it work. just uh... look elsewhere. <--------*/}
               <option value="0 SelectGenre">Select Genre</option>
