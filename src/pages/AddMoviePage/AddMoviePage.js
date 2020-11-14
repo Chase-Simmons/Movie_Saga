@@ -33,18 +33,21 @@ class AddMoviePage extends Component {
 
   /*------------> JSON DEMON SLAYER || AKA UNSTRINGER <------------*/
   JSON_DemonSlayer = () => (event) => {
-    const demonAshes = event.target.value.split(' '); // demonAshes is splitting the json by any spaces
-    const firstHalfOfAshes = demonAshes[0].slice(1); // fixing text
-    const secondHalfOfAshes = demonAshes[1].slice(0, -1); // fixing text
-    const compiledAshes = [firstHalfOfAshes, secondHalfOfAshes]; // combines both fixed text into new array
+    if (event.target.value === '0 SelectGenre') {
+    } else {
+      const demonAshes = event.target.value.split(' '); // demonAshes is splitting the json by any spaces
+      const firstHalfOfAshes = demonAshes[0].slice(1); // fixing text
+      const secondHalfOfAshes = demonAshes[1].slice(0, -1); // fixing text
+      const compiledAshes = [firstHalfOfAshes, secondHalfOfAshes]; // combines both fixed text into new array
 
-    console.log(this.state);
+      console.log(this.state);
 
-    this.setState({
-      ...this.state,
-      genreToAdd: compiledAshes[0],
-      genreIdToAdd: compiledAshes[1],
-    });
+      this.setState({
+        ...this.state,
+        genreToAdd: compiledAshes[0],
+        genreIdToAdd: compiledAshes[1],
+      });
+    }
   };
   /*------------> JSON DEMON SLAYER <------------*/
 
@@ -149,6 +152,7 @@ class AddMoviePage extends Component {
             {/*--------> MAPS GENRE REDUCER TO CREATE SELECTOR <--------*/}
             <select onChange={this.JSON_DemonSlayer()}>
               {/*--------> look man... i just had to make it work. just uh... look elsewhere. <--------*/}
+              <option value="0 SelectGenre">Select Genre</option>
               {this.props.store.genres.map((option) => (
                 <option
                   key={option.id}
