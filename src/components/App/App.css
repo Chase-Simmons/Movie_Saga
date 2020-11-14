@@ -27,6 +27,7 @@ input {
   height: 75px;
   color: white;
   margin: 0;
+  z-index: 10000;
 }
 
 .App-title {

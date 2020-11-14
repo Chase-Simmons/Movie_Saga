@@ -12,24 +12,43 @@ class AddMoviePage extends Component {
       title: '',
       description: '',
       genres: [],
+      genresId: [],
     },
     genreToAdd: '',
+    genreIdToAdd: '',
   };
 
+  /*--------> HANDLES ALL INPUT CHANGES <--------*/
   onFormChange = (key) => (event) => {
-    if (key === 'genreToAdd') {
-      this.setState({ ...this.state, [key]: event.target.value });
-    } else {
-      this.setState({
-        ...this.state,
-        movieForm: {
-          ...this.state.movieForm,
-          [key]: event.target.value,
-        },
-      });
-    }
+    this.setState({
+      ...this.state,
+      movieForm: {
+        ...this.state.movieForm,
+        [key]: event.target.value,
+      },
+    });
   };
 
+  /*--------> HANDLES ALL INPUT CHANGES <--------*/
+
+  /*------------> JSON DEMON SLAYER || AKA UNSTRINGER <------------*/
+  JSON_DemonSlayer = () => (event) => {
+    const demonAshes = event.target.value.split(' '); // demonAshes is splitting the json by any spaces
+    const firstHalfOfAshes = demonAshes[0].slice(1); // fixing text
+    const secondHalfOfAshes = demonAshes[1].slice(0, -1); // fixing text
+    const compiledAshes = [firstHalfOfAshes, secondHalfOfAshes]; // combines both fixed text into new array
+
+    console.log(this.state);
+
+    this.setState({
+      ...this.state,
+      genreToAdd: compiledAshes[0],
+      genreIdToAdd: compiledAshes[1],
+    });
+  };
+  /*------------> JSON DEMON SLAYER <------------*/
+
+  /*-------------> CLICK CATCHERS <--------------*/
   onClickCancel = () => {
     this.props.dispatch({ type: 'CLEAR_MOVIE_DETAILS' });
     this.props.history.push('/');
@@ -43,10 +62,12 @@ class AddMoviePage extends Component {
         movieForm: {
           ...this.state.movieForm,
           genres: [...this.state.movieForm.genres, this.state.genreToAdd],
+          genresId: [...this.state.movieForm.genresId, this.state.genreIdToAdd],
         },
         genreToAdd: '',
       });
     }
+    console.log(this.state);
   };
 
   onClickSubmit = () => {
@@ -65,6 +86,7 @@ class AddMoviePage extends Component {
       alert('please fill out all fields before submitting!');
     }
   };
+  /*-------------> CLICK CATCHERS <--------------*/
 
   render() {
     const imageBlockBackground = {
@@ -74,6 +96,7 @@ class AddMoviePage extends Component {
     return (
       <div className="space-from-header">
         <div className="add-movie-item-details-block">
+          {/*--------> BOTH IMAGE CONTAINERS  <--------*/}
           <div className="details-image-block">
             <div
               className="details-image-block-background"
@@ -87,7 +110,9 @@ class AddMoviePage extends Component {
               />
             </div>
           </div>
+          {/*--------> BOTH IMAGE CONTAINERS  <--------*/}
           <br />
+          {/*--------> ALL INPUT FIELDS <--------*/}
           <input
             placeholder="Image Path"
             onChange={this.onFormChange('poster')}
@@ -111,18 +136,31 @@ class AddMoviePage extends Component {
             value={this.state.movieForm.description}
             className="add-input"
           />
+          {/*--------> ALL INPUT FIELDS <--------*/}
           <br />
           <br />
+          {/*--------> MAPS OUT GENRES AS THEY ARE ADDED <--------*/}
           <div>
             {this.state.movieForm.genres.map((item, index) => (
               <span key={index}>{`${item}, `}</span>
             ))}
             <br />
-            <input
-              placeholder="Genre Name"
-              onChange={this.onFormChange('genreToAdd')}
-              value={this.state.genreToAdd}
-            ></input>
+            {/*--------> MAPS OUT GENRES AS THEY ARE ADDED <--------*/}
+            {/*--------> MAPS GENRE REDUCER TO CREATE SELECTOR <--------*/}
+            <select onChange={this.JSON_DemonSlayer()}>
+              {/*--------> look man... i just had to make it work. just uh... look elsewhere. <--------*/}
+              {this.props.store.genres.map((option) => (
+                <option
+                  key={option.id}
+                  value={JSON.stringify(`${option.name} ${option.id}`)}
+                >
+                  {option.name}
+                </option>
+              ))}
+              {/*--------> look man... i just had to make it work. just uh... look elsewhere. <--------*/}
+            </select>
+            {/*--------> MAPS GENRE REDUCER TO CREATE SELECTOR <--------*/}
+            {/*--------> DAS IST BUTTONS <--------*/}
             <button onClick={this.onClickAddGenre}>Add Genre</button>
           </div>
           <br />
@@ -131,6 +169,7 @@ class AddMoviePage extends Component {
             <button onClick={this.onClickSubmit}>Submit</button>
             <button onClick={this.onClickCancel}>Cancel</button>
           </div>
+          {/*--------> DAS IST BUTTONS <--------*/}
         </div>
       </div>
     );
