@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './AddMoviePage.css';
 
 // -> IMPORT COMPONENT <- \\
 // -> IMPORT COMPONENT <- \\
@@ -7,7 +8,7 @@ import { connect } from 'react-redux';
 class AddMoviePage extends Component {
   state = {
     movieForm: {
-      image: '',
+      poster: '',
       title: '',
       description: '',
       genres: [],
@@ -27,7 +28,6 @@ class AddMoviePage extends Component {
         },
       });
     }
-    console.log(this.state);
   };
 
   onClickCancel = () => {
@@ -48,9 +48,27 @@ class AddMoviePage extends Component {
       });
     }
   };
+
+  onClickSubmit = () => {
+    if (
+      this.state.movieForm.poster !== '' &&
+      this.state.movieForm.title !== '' &&
+      this.state.movieForm.description !== '' &&
+      this.state.movieForm.genres !== []
+    ) {
+      this.props.dispatch({
+        type: 'POST_MOVIES',
+        payload: this.state.movieForm,
+      });
+      this.props.history.push('/');
+    } else {
+      alert('please fill out all fields before submitting!');
+    }
+  };
+
   render() {
     const imageBlockBackground = {
-      backgroundImage: `url(${this.state.movieForm.image})`,
+      backgroundImage: `url(${this.state.movieForm.poster})`,
     };
 
     return (
@@ -64,7 +82,7 @@ class AddMoviePage extends Component {
             <div>
               <img
                 className="details-main-image"
-                src={this.state.movieForm.image}
+                src={this.state.movieForm.poster}
                 alt={this.state.movieForm.title}
               />
             </div>
@@ -72,8 +90,9 @@ class AddMoviePage extends Component {
           <br />
           <input
             placeholder="Image Path"
-            onChange={this.onFormChange('image')}
-            value={this.state.movieForm.image}
+            onChange={this.onFormChange('poster')}
+            value={this.state.movieForm.poster}
+            className="add-input"
           />
           <br />
           <div>
@@ -82,6 +101,7 @@ class AddMoviePage extends Component {
               placeholder="Title Name"
               onChange={this.onFormChange('title')}
               value={this.state.movieForm.title}
+              className="add-input"
             />
             <p>{this.state.movieForm.description}</p>
           </div>
@@ -89,6 +109,7 @@ class AddMoviePage extends Component {
             placeholder="Movie Description"
             onChange={this.onFormChange('description')}
             value={this.state.movieForm.description}
+            className="add-input"
           />
           <br />
           <br />
@@ -107,7 +128,7 @@ class AddMoviePage extends Component {
           <br />
           <br />
           <div className="button-box">
-            <button onClick={this.onClickCancel}>Submit</button>
+            <button onClick={this.onClickSubmit}>Submit</button>
             <button onClick={this.onClickCancel}>Cancel</button>
           </div>
         </div>
