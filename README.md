@@ -48,8 +48,6 @@ This is a project is a catalog for movies. information such as movie name, pictu
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-_Note, include this only if you have a license file. GitHub will generate one for you if you want!_
-
 ## Acknowledgement
 
 Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
