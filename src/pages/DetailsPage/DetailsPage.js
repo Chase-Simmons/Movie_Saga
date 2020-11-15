@@ -50,7 +50,9 @@ class DetailsPage extends Component {
           <br />
           <div>
             <h3>{this.props.store.movieDetails.title}</h3>
-            <p>{this.props.store.movieDetails.description}</p>
+            <p className="movie-description">
+              {this.props.store.movieDetails.description}
+            </p>
           </div>
           <div>
             <h3>Genres</h3>

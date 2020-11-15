@@ -11,23 +11,6 @@ CREATE TABLE "genres" (
   "name" VARCHAR(80) NOT NULL
 );
 
-
--- CREATE JUNCTION TABLE
--- You will need to create the junction table that stores the relationships between "movies" and "genres"
--- This table will need to be populated with some data as well (INSERTS)
--- Recall that this Junction Table will just be a table of ids!
-
-CREATE TABLE "movies_and_genres" (
-	"id" SERIAL PRIMARY KEY,
-	"movie_id" INT REFERENCES "movies",
-	"genre_id" INT REFERENCES "genres"
-	);
-
-  
-
---------[ DATA! ]---------
-
--- starter movies
 INSERT INTO "movies" ("title", "poster", "description")
 VALUES 
 ('Avatar', 'images/avatar.jpeg', 'Avatar (marketed as James Cameron''s Avatar) is a 2009 American epic science fiction film directed, written, produced, and co-edited by James Cameron, and stars Sam Worthington, Zoe Saldana, Stephen Lang, Michelle Rodriguez, and Sigourney Weaver. The film is set in the mid-22nd century, when humans are colonizing Pandora, a lush habitable moon of a gas giant in the Alpha Centauri star system, in order to mine the mineral unobtanium, a room-temperature superconductor. The expansion of the mining colony threatens the continued existence of a local tribe of Na''vi – a humanoid species indigenous to Pandora. The film''s title refers to a genetically engineered Na''vi body operated from the brain of a remotely located human that is used to interact with the natives of Pandora.'),
@@ -61,3 +44,42 @@ VALUES
 ('Science Fiction'),
 ('Space-Opera'),
 ('Superhero');
+
+
+CREATE TABLE "movies_and_genres" (
+	"id" SERIAL PRIMARY KEY,
+	"movie_id" INT REFERENCES "movies",
+	"genre_id" INT REFERENCES "genres"
+);
+	
+INSERT INTO "movies_and_genres" ("movie_id", "genre_id")
+VALUES 
+(1, 1),
+(1, 7),
+(2, 6),
+(2, 9),
+(3, 11),
+(3, 13),
+(4, 1),
+(4, 2),
+(5, 1),
+(5, 11),
+(6, 1),
+(6, 11),
+(7, 1),
+(7, 7),
+(8, 5),
+(8, 6),
+(9, 2),
+(9, 4),
+(10, 1),
+(10, 11),
+(11, 1),
+(11, 5),
+(12, 3),
+(12, 6),
+(13, 5),
+(13, 6),
+(14, 1),
+(14, 2);
+

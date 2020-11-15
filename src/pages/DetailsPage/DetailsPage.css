@@ -46,3 +46,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.movie-description {
+  margin-left: 5px;
+  margin-right: 5px;
+}
