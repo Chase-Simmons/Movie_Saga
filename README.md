@@ -3,7 +3,7 @@
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/scottbromander/the_marketplace.svg?style=flat-square)
 ![FORKS](https://img.shields.io/github/forks/scottbromander/the_marketplace.svg?style=social)
 
-# WEEKEND FEEDBACK-LOOP
+# WEEKEND MOVIE SAGA
 
 ## Description
 
@@ -13,9 +13,9 @@ This is a project is a catalog for movies. information such as movie name, pictu
 
 ## Screen Shot
 
+![Screen-Shot](SS1.png)
 ![Screen-Shot](SS2.png)
 ![Screen-Shot](SS3.png)
-![Screen-Shot](SS1.png)
 
 ## Database Setup
 
