@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './AddMoviePage.css';
 
 // -> IMPORT COMPONENT <- \\
+import swal from 'sweetalert';
 // -> IMPORT COMPONENT <- \\
 
 class AddMoviePage extends Component {
@@ -59,7 +60,7 @@ class AddMoviePage extends Component {
 
   onClickAddGenre = () => {
     if (this.state.genreToAdd === '') {
-      alert('please fill out genre before adding!');
+      swal('please fill out genre before adding!');
     } else {
       this.setState({
         movieForm: {
@@ -86,7 +87,7 @@ class AddMoviePage extends Component {
       });
       this.props.history.push('/');
     } else {
-      alert('please fill out all fields before submitting!');
+      swal('please fill out all fields before submitting!');
     }
   };
   /*-------------> CLICK CATCHERS <--------------*/

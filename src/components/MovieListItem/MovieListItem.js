@@ -11,10 +11,10 @@ function MovieListItem(props) {
           alt={props.item.title}
         />
       </div>
-      <div className="details-block">
-        <h3>{props.item.title}</h3>
+      {/* <div className="details-block">
+        
         <p>{props.item.description}</p>
-      </div>
+      </div> */}
     </div>
   );
 }

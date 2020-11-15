@@ -67,7 +67,7 @@ input {
 }
 
 .nav-item:nth-child(odd):hover {
-  color: #ccf9ff;
+  color: #8bf1ff;
   text-decoration: underline;
 }
 
