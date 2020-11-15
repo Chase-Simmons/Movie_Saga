@@ -41,8 +41,6 @@ class AddMoviePage extends Component {
       const secondHalfOfAshes = demonAshes[1].slice(0, -1); // fixing text
       const compiledAshes = [firstHalfOfAshes, secondHalfOfAshes]; // combines both fixed text into new array
 
-      console.log(this.state);
-
       this.setState({
         ...this.state,
         genreToAdd: compiledAshes[0],
